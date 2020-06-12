@@ -1,30 +1,37 @@
 package com.ranyell.escola.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ranyell.escola.domain.pk.MatriculaPK;
+import com.ranyell.escola.domain.pk.ResultadoPK;
 
 @Entity
-public class Matricula implements Serializable{
+public class Resultado implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private MatriculaPK id = new MatriculaPK();
-	private Date data;
+	private ResultadoPK id = new ResultadoPK();
+	private Double notaObtida;
 	
-	public Matricula() {
+	public Resultado() {
 		
 	}
 	
-	public Matricula(Aluno aluno, Turma turma, Date data) {
+	public Resultado(Aluno aluno, Avaliacao avaliacao, Double notaObtida) {
 		id.setAluno(aluno);
-		id.setTurma(turma);
-		this.data = data;
+		id.setAvaliacao(avaliacao);
+		this.notaObtida = notaObtida;
+	}
+
+	public Double getNotaObtida() {
+		return notaObtida;
+	}
+
+	public void setNotaObtida(Double notaObtida) {
+		this.notaObtida = notaObtida;
 	}
 	
 	@JsonIgnore
@@ -37,20 +44,12 @@ public class Matricula implements Serializable{
 	}
 	
 	@JsonIgnore
-	public Turma getTurma() {
-		return id.getTurma();
+	public Avaliacao getAvaliacao() {
+		return id.getAvaliacao();
 	}
 	
-	public void setTurma(Turma turma) {
-		id.setTurma(turma);
-	}
-
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
+	public void setAvaliacao(Avaliacao avaliacao) {
+		id.setAvaliacao(avaliacao);
 	}
 
 	@Override
@@ -69,7 +68,7 @@ public class Matricula implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Matricula other = (Matricula) obj;
+		Resultado other = (Resultado) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

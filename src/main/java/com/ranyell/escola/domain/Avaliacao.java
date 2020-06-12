@@ -3,9 +3,7 @@ package com.ranyell.escola.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,54 +12,36 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-public class Turma implements Serializable {
+public class Avaliacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Date data;
-	private Integer numeroDeVagas;
+	private Double nota;
 	
 	@ManyToOne
-	private Curso curso;
+	private Turma turma;
 	
-	@OneToMany(mappedBy = "id.turma")
-	private Set<Matricula> matriculas = new HashSet<>();
+	@OneToMany(mappedBy = "id.avaliacao")
+	private List<Resultado> resultados = new ArrayList<>();
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "turma")
-	List<Avaliacao> avaliacoes = new ArrayList<>();
-	
-	public Turma() {
+	public Avaliacao() {
 		
 	}
 
-	public Turma(Integer id, Date data, Integer numeroDeVagas, Curso curso) {
+	public Avaliacao(Integer id, Date data, Double nota, Turma turma) {
 		super();
 		this.id = id;
 		this.data = data;
-		this.numeroDeVagas = numeroDeVagas;
-		this.curso = curso;
+		this.nota = nota;
+		this.turma = turma;
 	}
 	
-	public Set<Matricula> getMatriculas(){
-		return matriculas;
-	}
-	
-	public void setMatriculas(Set<Matricula> matriculas) {
-		this.matriculas = matriculas;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public List<Resultado> getResultados(){
+		return resultados;
 	}
 
 	public Integer getId() {
@@ -80,20 +60,20 @@ public class Turma implements Serializable {
 		this.data = data;
 	}
 
-	public Integer getNumeroDeVagas() {
-		return numeroDeVagas;
+	public Double getNota() {
+		return nota;
 	}
 
-	public void setNumeroDeVagas(Integer numeroDeVagas) {
-		this.numeroDeVagas = numeroDeVagas;
+	public void setNota(Double nota) {
+		this.nota = nota;
 	}
 
-	public List<Avaliacao> getAvaliacoes() {
-		return avaliacoes;
+	public Turma getTurma() {
+		return turma;
 	}
 
-	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-		this.avaliacoes = avaliacoes;
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	@Override
@@ -112,7 +92,7 @@ public class Turma implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Turma other = (Turma) obj;
+		Avaliacao other = (Avaliacao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -120,5 +100,5 @@ public class Turma implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
