@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ranyell.escola.Services.exceptions.ObjectNotFoundException;
+import com.ranyell.escola.domain.Aluno;
 import com.ranyell.escola.domain.Turma;
 import com.ranyell.escola.repositories.TurmaRepository;
 
@@ -21,7 +23,8 @@ public class TurmaService {
 	
 	public Turma findById(Integer id) {
 		Optional<Turma> obj = repo.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				 "Turma não encontrada! Id: " + id + ", Tipo: " + Aluno.class.getName()));
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ranyell.escola.Services.exceptions.ObjectNotFoundException;
 import com.ranyell.escola.domain.Aluno;
 import com.ranyell.escola.repositories.AlunoRepository;
 
@@ -21,7 +22,8 @@ public class AlunoService {
 	
 	public Aluno findById(Integer id) {
 		Optional<Aluno> obj = repo.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				 "Aluno não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName())); 
 	}
 
 }

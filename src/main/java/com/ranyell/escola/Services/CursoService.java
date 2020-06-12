@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ranyell.escola.Services.exceptions.ObjectNotFoundException;
+import com.ranyell.escola.domain.Aluno;
 import com.ranyell.escola.domain.Curso;
 import com.ranyell.escola.repositories.CursoRepository;
 
@@ -21,7 +23,8 @@ public class CursoService {
 	
 	public Curso findById(Integer id) {
 		Optional<Curso> obj = repo.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				 "Curso não encontrado! Id: " + id + ", Tipo: " + Aluno.class.getName()));
 	}
 
 }
