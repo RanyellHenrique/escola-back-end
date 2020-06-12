@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Curso implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +23,7 @@ public class Curso implements Serializable {
 	private Double cargaHoraria;
 	private Double notaMinima;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "curso")
 	Set<Turma> turmas = new HashSet<Turma>();
 	

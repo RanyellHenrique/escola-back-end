@@ -1,11 +1,16 @@
 package com.ranyell.escola.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Aluno  implements Serializable{
@@ -16,6 +21,10 @@ public class Aluno  implements Serializable{
 	private Integer id;
 	private String nome;
 	private String cpf;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "id.aluno")
+	private Set<Matricula> matriculas = new HashSet<>();
 	
 	public Aluno() {
 		
@@ -50,6 +59,10 @@ public class Aluno  implements Serializable{
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public Set<Matricula> getmatriculas(){
+		return matriculas;
 	}
 
 	@Override

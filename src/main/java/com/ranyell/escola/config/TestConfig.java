@@ -10,9 +10,11 @@ import org.springframework.context.annotation.Profile;
 
 import com.ranyell.escola.domain.Aluno;
 import com.ranyell.escola.domain.Curso;
+import com.ranyell.escola.domain.Matricula;
 import com.ranyell.escola.domain.Turma;
 import com.ranyell.escola.repositories.AlunoRepository;
 import com.ranyell.escola.repositories.CursoRepository;
+import com.ranyell.escola.repositories.MatriculaRepository;
 import com.ranyell.escola.repositories.TurmaRepository;
 
 @Configuration
@@ -27,6 +29,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private TurmaRepository turmaRepository;
+	
+	@Autowired
+	private MatriculaRepository matriculaRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -47,6 +52,11 @@ public class TestConfig implements CommandLineRunner {
 		
 		cursoRepository.saveAll(Arrays.asList(c1, c2));
 		turmaRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
+		
+		Matricula m1 = new Matricula(a2, t2, new Date());
+		Matricula m2 = new Matricula(a1, t3, new Date());
+		
+		matriculaRepository.saveAll(Arrays.asList(m1, m2));
 		
 	}
 	
