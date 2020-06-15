@@ -21,6 +21,7 @@ public class Aluno  implements Serializable{
 	private Integer id;
 	private String nome;
 	private String cpf;
+	private String email;
 	
 	@OneToMany(mappedBy = "id.aluno")
 	private Set<Matricula> matriculas = new HashSet<>();
@@ -32,11 +33,12 @@ public class Aluno  implements Serializable{
 		
 	}
 
-	public Aluno(Integer id, String nome, String cpf) {
+	public Aluno(Integer id, String nome, String cpf, String email) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
+		this.email = email;
 	}
 
 	public Integer getId() {
@@ -62,6 +64,15 @@ public class Aluno  implements Serializable{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 	public Set<Matricula> getmatriculas(){
 		return matriculas;
@@ -95,7 +106,5 @@ public class Aluno  implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 
 }
