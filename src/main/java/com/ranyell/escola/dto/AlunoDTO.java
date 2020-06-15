@@ -2,14 +2,27 @@ package com.ranyell.escola.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.ranyell.escola.domain.Aluno;
 
 public class AlunoDTO  implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+
+	@NotEmpty(message = "Preenchimento obrigatório.")
+	@Length(min = 3, max = 80, message = "O tamanho deve ser entre 3 e 80 caracteres.")
 	private String nome;
+	
+	@CPF(message = "CPF Inválido.")
 	private String cpf;
+	
+	@Email(message = "Email Inválido.")
 	private String email;
 	
 	public AlunoDTO() {
