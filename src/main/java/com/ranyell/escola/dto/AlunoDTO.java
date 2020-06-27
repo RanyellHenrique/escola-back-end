@@ -19,9 +19,11 @@ public class AlunoDTO  implements Serializable{
 	@Length(min = 3, max = 80, message = "O tamanho deve ser entre 3 e 80 caracteres.")
 	private String nome;
 	
+	@NotEmpty(message = "Preenchimento obrigatório.")
 	@CPF(message = "CPF Inválido.")
 	private String cpf;
 	
+	@NotEmpty(message = "Preenchimento obrigatório.")
 	@Email(message = "Email Inválido.")
 	private String email;
 	
