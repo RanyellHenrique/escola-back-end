@@ -14,6 +14,7 @@ import com.ranyell.escola.domain.Curso;
 import com.ranyell.escola.domain.Matricula;
 import com.ranyell.escola.domain.Resultado;
 import com.ranyell.escola.domain.Turma;
+import com.ranyell.escola.domain.enums.Perfil;
 import com.ranyell.escola.repositories.AlunoRepository;
 import com.ranyell.escola.repositories.AvaliacaoRepository;
 import com.ranyell.escola.repositories.CursoRepository;
@@ -47,6 +48,7 @@ public class DBService {
 
 	public void instantiateTestDatabase() throws ParseException {
 		Aluno a1 = new Aluno(null, "Ranyell", "05187022199", "ranyell@gmail.com",   cryp.encode("123"));
+		a1.addPerfil(Perfil.ADMIN);
 		Aluno a2 = new Aluno(null, "Jorge", "50016466004", "jorge@hotmail.com",  cryp.encode("123"));
 		Aluno a3 = new Aluno(null, "Ana", "09957667033", "ana@hotmail.com",   cryp.encode("123"));
 		Aluno a4 = new Aluno(null, "Lucas", "59271175034", "lucas@hotmail.com",   cryp.encode("123"));
@@ -72,6 +74,12 @@ public class DBService {
 
 		Curso c1 = new Curso(null, "Ciencia da Computação", 3000.0, 7.0);
 		Curso c2 = new Curso(null, "Analise e desenvolvimento de sistemas", 1500.0, 5.0);
+		Curso c3 = new Curso(null, "Automação Industrial", 1500.0, 5.0);
+		Curso c4 = new Curso(null, "Biomedicina", 3000.0, 7.0);
+		Curso c5 = new Curso(null, "Ciências Contábeis", 3000.0, 7.0);
+		Curso c6 = new Curso(null, "Direito", 4000.0, 7.0);
+		Curso c7 = new Curso(null, "Enfermagem", 3000.0, 7.0);
+		Curso c8 = new Curso(null, "Engenharia de Computação", 4000.0, 7.0);
 
 		Turma t1 = new Turma(null, new Date(), 60, c1);
 		Turma t2 = new Turma(null, new Date(), 55, c1);
@@ -79,7 +87,7 @@ public class DBService {
 		Turma t3 = new Turma(null, new Date(), 50, c2);
 		Turma t4 = new Turma(null, new Date(), 45, c2);
 
-		cursoRepository.saveAll(Arrays.asList(c1, c2));
+		cursoRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8));
 		turmaRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
 
 		Matricula m1 = new Matricula(a2, t2, new Date());

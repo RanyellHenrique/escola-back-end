@@ -70,7 +70,7 @@ public class AlunoResource {
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
-			@RequestParam(value = "dirction", defaultValue = "ASC") String direction
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction
 			){
 		Page<Aluno> list = service.findPage(page, linesPerPage, orderBy, direction);
 		Page<AlunoDTO> listDto = list.map(obj -> new AlunoDTO(obj));
@@ -83,10 +83,16 @@ public class AlunoResource {
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
-			@RequestParam(value = "dirction", defaultValue = "ASC") String direction
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction
 			){
 		Page<Aluno> list = service.findPagePerName(nome, page, linesPerPage, orderBy, direction);
 		Page<AlunoDTO> listDto = list.map(obj -> new AlunoDTO(obj));
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	@GetMapping(value="/email")
+	public ResponseEntity<Aluno> find(@RequestParam(value="value") String email) {
+		Aluno obj = service.findByEmail(email);
+		return ResponseEntity.ok().body(obj);
 	}
 }
