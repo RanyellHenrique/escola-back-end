@@ -13,35 +13,45 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Avaliacao implements Serializable {
+public class Disciplina implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private String nome;
 	private Date data;
 	private Double nota;
 	
 	@ManyToOne
 	private Turma turma;
 	
-	@OneToMany(mappedBy = "id.avaliacao")
+	@OneToMany(mappedBy = "id.disciplina")
 	private List<Resultado> resultados = new ArrayList<>();
 	
-	public Avaliacao() {
+	public Disciplina() {
 		
 	}
 
-	public Avaliacao(Integer id, Date data, Double nota, Turma turma) {
+	public Disciplina(Integer id, Date data, Double nota, Turma turma, String nome) {
 		super();
 		this.id = id;
 		this.data = data;
 		this.nota = nota;
 		this.turma = turma;
+		this.nome = nome;
 	}
 	
 	public List<Resultado> getResultados(){
 		return resultados;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public Integer getId() {
@@ -92,7 +102,7 @@ public class Avaliacao implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Avaliacao other = (Avaliacao) obj;
+		Disciplina other = (Disciplina) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

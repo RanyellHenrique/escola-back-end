@@ -34,7 +34,7 @@ public class Turma implements Serializable {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "turma")
-	List<Avaliacao> avaliacoes = new ArrayList<>();
+	List<Disciplina> disciplinas = new ArrayList<>();
 	
 	public Turma() {
 		
@@ -88,12 +88,12 @@ public class Turma implements Serializable {
 		this.numeroDeVagas = numeroDeVagas;
 	}
 
-	public List<Avaliacao> getAvaliacoes() {
-		return avaliacoes;
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
 	}
 
-	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
-		this.avaliacoes = avaliacoes;
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 
 	@Override

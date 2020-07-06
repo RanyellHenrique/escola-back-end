@@ -7,26 +7,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.ranyell.escola.domain.Aluno;
-import com.ranyell.escola.domain.Avaliacao;
+import com.ranyell.escola.domain.Disciplina;
 
 @Embeddable
 public class ResultadoPK implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
-	@JoinColumn(name = "avaliacao_id")
-	private Avaliacao avaliacao;
+	@JoinColumn(name = "disciplina_id")
+	private Disciplina disciplina;
 	
 	@ManyToOne
 	@JoinColumn(name = "aluno_id")
 	private Aluno aluno;
 
-	public Avaliacao getAvaliacao() {
-		return avaliacao;
+	public Disciplina getDisciplina() {
+		return disciplina;
 	}
 
-	public void setAvaliacao(Avaliacao avaliacao) {
-		this.avaliacao = avaliacao;
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 	public Aluno getAluno() {
@@ -42,7 +42,7 @@ public class ResultadoPK implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
-		result = prime * result + ((avaliacao == null) ? 0 : avaliacao.hashCode());
+		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		return result;
 	}
 
@@ -60,10 +60,10 @@ public class ResultadoPK implements Serializable{
 				return false;
 		} else if (!aluno.equals(other.aluno))
 			return false;
-		if (avaliacao == null) {
-			if (other.avaliacao != null)
+		if (disciplina == null) {
+			if (other.disciplina != null)
 				return false;
-		} else if (!avaliacao.equals(other.avaliacao))
+		} else if (!disciplina.equals(other.disciplina))
 			return false;
 		return true;
 	}

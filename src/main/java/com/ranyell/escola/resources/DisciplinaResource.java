@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ranyell.escola.Services.AvaliacaoService;
-import com.ranyell.escola.domain.Avaliacao;
+import com.ranyell.escola.Services.DisciplinaService;
+import com.ranyell.escola.domain.Disciplina;
 
 @RestController
-@RequestMapping(value = "/avaliacoes")
-public class AvaliacaoResource {
+@RequestMapping(value = "/disciplinas")
+public class DisciplinaResource {
 
 	@Autowired
-	private AvaliacaoService service;
+	private DisciplinaService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Avaliacao>> findAll(){
-		List<Avaliacao> list = service.findAll();
+	public ResponseEntity<List<Disciplina>> findAll(){
+		List<Disciplina> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Avaliacao> findById(@PathVariable Integer id){
-		Avaliacao obj = service.findById(id);
+	public ResponseEntity<Disciplina> findById(@PathVariable Integer id){
+		Disciplina obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

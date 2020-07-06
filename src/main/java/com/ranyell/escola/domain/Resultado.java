@@ -20,9 +20,9 @@ public class Resultado implements Serializable {
 		
 	}
 	
-	public Resultado(Aluno aluno, Avaliacao avaliacao, Double notaObtida) {
+	public Resultado(Aluno aluno, Disciplina disciplina, Double notaObtida) {
 		id.setAluno(aluno);
-		id.setAvaliacao(avaliacao);
+		id.setDisciplina(disciplina);
 		this.notaObtida = notaObtida;
 	}
 
@@ -44,12 +44,12 @@ public class Resultado implements Serializable {
 	}
 	
 	@JsonIgnore
-	public Avaliacao getAvaliacao() {
-		return id.getAvaliacao();
+	public Disciplina getDisciplina() {
+		return id.getDisciplina();
 	}
 	
-	public void setAvaliacao(Avaliacao avaliacao) {
-		id.setAvaliacao(avaliacao);
+	public void setDisciplina(Disciplina avaliacao) {
+		id.setDisciplina(avaliacao);
 	}
 
 	@Override

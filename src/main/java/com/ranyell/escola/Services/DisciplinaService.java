@@ -15,41 +15,41 @@ import org.springframework.stereotype.Service;
 import com.ranyell.escola.Services.exceptions.AuthorizationException;
 import com.ranyell.escola.Services.exceptions.DataIntegrityException;
 import com.ranyell.escola.Services.exceptions.ObjectNotFoundException;
-import com.ranyell.escola.domain.Avaliacao;
+import com.ranyell.escola.domain.Disciplina;
 import com.ranyell.escola.domain.enums.Perfil;
-import com.ranyell.escola.repositories.AvaliacaoRepository;
+import com.ranyell.escola.repositories.DisciplinaRepository;
 import com.ranyell.escola.security.UserSS;
 
 @Service
-public class AvaliacaoService {
+public class DisciplinaService {
 
 	@Autowired
-	private AvaliacaoRepository repo;
+	private DisciplinaRepository repo;
 	
 	@Autowired
 	private TurmaService turmaService;
 
-	public Avaliacao findById(Integer id) {
+	public Disciplina findById(Integer id) {
 		UserSS user = UserService.authenticated();
 		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
 			throw new AuthorizationException("Acesso negado");
 		}
-		Optional<Avaliacao> obj = repo.findById(id);
+		Optional<Disciplina> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
-				"Avaliação não encontrada Id: " + id + ", tipo: " + Avaliacao.class.getName()));
+				"Disciplina não encontrada Id: " + id + ", tipo: " + Disciplina.class.getName()));
 	}
 
 	@Transactional
-	public Avaliacao insert(Avaliacao obj) {
+	public Disciplina insert(Disciplina obj) {
 		return repo.save(obj);
 	}
 
-	public List<Avaliacao> findAll() {
+	public List<Disciplina> findAll() {
 		return repo.findAll();
 	}
 
-	public Avaliacao update(Avaliacao obj) {
-		Avaliacao newObj = findById(obj.getId());
+	public Disciplina update(Disciplina obj) {
+		Disciplina newObj = findById(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(obj);
 	}
@@ -59,16 +59,16 @@ public class AvaliacaoService {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possivel excluir um aluno que possui matricula e avaliações");
+			throw new DataIntegrityException("Não é possivel excluir um aluno que possui matricula e Disciplina");
 		}
 	}
 
-	public Page<Avaliacao> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<Disciplina> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 
-	public void updateData(Avaliacao newObj, Avaliacao obj) {
+	public void updateData(Disciplina newObj, Disciplina obj) {
 		newObj.setData(obj.getData());
 		newObj.setId(obj.getId());
 		newObj.setNota(obj.getNota());

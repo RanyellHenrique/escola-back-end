@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ranyell.escola.Services.CursoService;
 import com.ranyell.escola.domain.Curso;
 import com.ranyell.escola.dto.CursoDTO;
+import com.ranyell.escola.dto.CursoDetailsDTO;
 
 @RestController
 @RequestMapping(value = "/cursos")
@@ -29,8 +30,8 @@ public class CursoResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Curso> findById(@PathVariable Integer id){
-		Curso obj = service.findById(id);
+	public ResponseEntity<CursoDetailsDTO> findById(@PathVariable Integer id){
+		CursoDetailsDTO obj = new CursoDetailsDTO(service.findById(id));
 		return ResponseEntity.ok().body(obj);
 	}
 	

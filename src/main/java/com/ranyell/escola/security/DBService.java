@@ -9,14 +9,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ranyell.escola.domain.Aluno;
-import com.ranyell.escola.domain.Avaliacao;
+import com.ranyell.escola.domain.Disciplina;
 import com.ranyell.escola.domain.Curso;
 import com.ranyell.escola.domain.Matricula;
 import com.ranyell.escola.domain.Resultado;
 import com.ranyell.escola.domain.Turma;
 import com.ranyell.escola.domain.enums.Perfil;
 import com.ranyell.escola.repositories.AlunoRepository;
-import com.ranyell.escola.repositories.AvaliacaoRepository;
+import com.ranyell.escola.repositories.DisciplinaRepository;
 import com.ranyell.escola.repositories.CursoRepository;
 import com.ranyell.escola.repositories.MatriculaRepository;
 import com.ranyell.escola.repositories.ResultadoRepository;
@@ -41,7 +41,7 @@ public class DBService {
 	private MatriculaRepository matriculaRepository;
 
 	@Autowired
-	private AvaliacaoRepository avaliacaoRepository;
+	private DisciplinaRepository avaliacaoRepository;
 
 	@Autowired
 	private ResultadoRepository resultadoRepository;
@@ -95,8 +95,8 @@ public class DBService {
 
 		matriculaRepository.saveAll(Arrays.asList(m1, m2));
 
-		Avaliacao ava1 = new Avaliacao(null, new Date(), 10.0, t1);
-		Avaliacao ava2 = new Avaliacao(null, new Date(), 10.0, t2);
+		Disciplina ava1 = new Disciplina(null, new Date(), 10.0, t1, "Lógica de programação");
+		Disciplina ava2 = new Disciplina(null, new Date(), 10.0, t2, "Banco de dados");
 
 		avaliacaoRepository.saveAll(Arrays.asList(ava1, ava2));
 
