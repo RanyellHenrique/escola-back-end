@@ -80,15 +80,25 @@ public class DBService {
 		Curso c6 = new Curso(null, "Direito", 4000.0, 7.0);
 		Curso c7 = new Curso(null, "Enfermagem", 3000.0, 7.0);
 		Curso c8 = new Curso(null, "Engenharia de Computação", 4000.0, 7.0);
+		Curso c9 = new Curso(null, "Matemática", 3000.0, 7.0);
+		Curso c10 = new Curso(null, "Química", 4000.0, 7.0);
+		Curso c11 = new Curso(null, "Física", 3000.0, 7.0);
+		Curso c12 = new Curso(null, "Engenharia Civil", 4000.0, 7.0);
 
 		Turma t1 = new Turma(null, new Date(), 60, c1);
 		Turma t2 = new Turma(null, new Date(), 55, c1);
+		Turma t5 = new Turma(null, new Date(), 42, c1);
+		Turma t6 = new Turma(null, new Date(), 43, c1);
+		Turma t7 = new Turma(null, new Date(), 31, c1);
+		Turma t8 = new Turma(null, new Date(), 27, c1);
+		Turma t9 = new Turma(null, new Date(), 15, c1);
+		Turma t10 = new Turma(null, new Date(), 28, c1);
 
 		Turma t3 = new Turma(null, new Date(), 50, c2);
 		Turma t4 = new Turma(null, new Date(), 45, c2);
 
-		cursoRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8));
-		turmaRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
+		cursoRepository.saveAll(Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12));
+		turmaRepository.saveAll(Arrays.asList(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10));
 
 		Matricula m1 = new Matricula(a2, t2, new Date());
 		Matricula m2 = new Matricula(a1, t3, new Date());
@@ -96,15 +106,29 @@ public class DBService {
 		matriculaRepository.saveAll(Arrays.asList(m1, m2));
 
 		Disciplina ava1 = new Disciplina(null, new Date(), 10.0, t1, "Lógica de programação");
-		Disciplina ava2 = new Disciplina(null, new Date(), 10.0, t2, "Banco de dados");
+		Disciplina ava3 = new Disciplina(null, new Date(), 10.0, t1, "Banco De Dados");
+		Disciplina ava4 = new Disciplina(null, new Date(), 10.0, t1, "Orientação a objeto");
+		Disciplina ava5 = new Disciplina(null, new Date(), 10.0, t1, "Algebra Linear");
+		Disciplina ava6 = new Disciplina(null, new Date(), 10.0, t1, "Estrutura de dados");
+		Disciplina ava2 = new Disciplina(null, new Date(), 10.0, t1, "Programação Estruturada");
+		Disciplina ava7 = new Disciplina(null, new Date(), 10.0, t1, "Computação gráfica");
+		Disciplina ava8 = new Disciplina(null, new Date(), 10.0, t1, "Circuitos Digitais");
+		Disciplina ava9 = new Disciplina(null, new Date(), 10.0, t1, "Paradigmas De LInguagens");
 
-		avaliacaoRepository.saveAll(Arrays.asList(ava1, ava2));
+		avaliacaoRepository.saveAll(Arrays.asList(ava1, ava2, ava3, ava4, ava5, ava6, ava7, ava8, ava9));
 
 		Resultado r1 = new Resultado(a2, ava2, 8.2);
 		Resultado r2 = new Resultado(a1, ava1, 8.7);
 		Resultado r3 = new Resultado(a4, ava2, 9.3);
 		Resultado r4 = new Resultado(a5, ava1, 8.4);
+		Resultado r5 = new Resultado(a1, ava3, 7.5);
+		Resultado r6 = new Resultado(a1, ava4, 8.9);
+		Resultado r7 = new Resultado(a1, ava5, 6.7);
+		Resultado r8 = new Resultado(a1, ava6, 9.2);
+		Resultado r9 = new Resultado(a1, ava7, 8.9);
+		Resultado r10 = new Resultado(a1, ava8, 6.7);
+		Resultado r11 = new Resultado(a1, ava9, 9.2);
 
-		resultadoRepository.saveAll(Arrays.asList(r1, r2, r3, r4));
+		resultadoRepository.saveAll(Arrays.asList(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11));
 	}
 }

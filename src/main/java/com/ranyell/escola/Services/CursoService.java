@@ -39,5 +39,9 @@ public class CursoService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findByNomeContainingIgnoreCase(nome, pageRequest);
 	}
+	
+	public Curso insert(Curso obj) {
+		return repo.save(obj);
+	}
 
 }

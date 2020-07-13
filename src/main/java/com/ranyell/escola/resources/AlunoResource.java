@@ -24,6 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.ranyell.escola.Services.AlunoService;
 import com.ranyell.escola.domain.Aluno;
 import com.ranyell.escola.dto.AlunoDTO;
+import com.ranyell.escola.dto.AlunoDetailsDTO;
 
 @RestController
 @RequestMapping(value = "/alunos")
@@ -40,8 +41,8 @@ public class AlunoResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Aluno> findById(@PathVariable Integer id){
-		Aluno obj = service.findById(id);
+	public ResponseEntity<AlunoDetailsDTO> findById(@PathVariable Integer id){
+		AlunoDetailsDTO obj = new AlunoDetailsDTO(service.findById(id));
 		return ResponseEntity.ok().body(obj);
 	}
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ranyell.escola.Services.TurmaService;
 import com.ranyell.escola.domain.Turma;
+import com.ranyell.escola.dto.TurmaDetailsDTO;
 
 @RestController
 @RequestMapping(value = "/turmas")
@@ -26,8 +27,10 @@ public class TurmaResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Turma> findById(@PathVariable Integer id){
+	public ResponseEntity<TurmaDetailsDTO> findById(@PathVariable Integer id){
 		Turma obj = service.findById(id);
-		return ResponseEntity.ok().body(obj);
+		TurmaDetailsDTO listDto = new TurmaDetailsDTO(obj);
+		return ResponseEntity.ok().body(listDto);
 	}
+
 }
